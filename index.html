@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudio Paz & Asoc. — Solicitud de Propuesta</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F4F4F0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+:root{--ep:#0A0A0A;--gold:#C8A96E;--golda:rgba(200,169,110,0.13);--border:#E0E0DA;--bg:#FFFFFF;--bg2:#F7F7F4;--txt:#111;--txt2:#666;--txt3:#999;--rad:10px}
+#card{width:100%;max-width:660px;border-radius:14px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.10)}
+.hdr{background:var(--ep);padding:15px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:50px;height:50px;object-fit:contain}
+.brand h1{color:#fff;font-size:14px;font-weight:600;letter-spacing:.5px}
+.brand p{color:#888;font-size:11px;margin-top:2px}
+.hdr-r{text-align:right}
+.hdr-r p:first-child{color:#bbb;font-size:11px}
+.hdr-r p:last-child{color:#666;font-size:10px;margin-top:2px}
+.goldbar{height:3px;background:var(--gold)}
+.prog{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 24px}
+.steps{display:flex;align-items:flex-start}
+.si{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1}
+.sc{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;border:1.5px solid var(--border);color:var(--txt3);background:#fff;transition:all .3s}
+.sc.act{border-color:var(--ep);background:var(--ep);color:#fff}
+.sc.dn{border-color:var(--gold);background:var(--gold);color:#fff}
+.sl{font-size:9px;color:var(--txt3);text-align:center;line-height:1.3}
+.sl.act{color:var(--txt);font-weight:600}
+.cw{flex:1;padding-top:14px}
+.cl{height:1px;background:var(--border);transition:background .3s}
+.cl.dn{background:var(--gold)}
+.body{background:var(--bg);padding:26px 28px 18px;min-height:360px}
+.stp{display:none}.stp.vis{display:block}
+.ttl{font-size:18px;font-weight:600;color:var(--txt);margin-bottom:4px}
+.sub{font-size:13px;color:var(--txt2);margin-bottom:22px}
+.fr{margin-bottom:16px}
+.fr label{display:block;font-size:11px;font-weight:600;color:var(--txt2);margin-bottom:6px;letter-spacing:.4px;text-transform:uppercase}
+.fr input,.fr select{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--txt);background:#fff;outline:none;transition:border .15s}
+.fr input:focus,.fr select:focus{border-color:#aaa}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.rr{display:flex;gap:7px;flex-wrap:wrap}
+.rb{padding:7px 14px;border:1px solid var(--border);border-radius:8px;font-size:12px;cursor:pointer;background:#fff;color:var(--txt2);transition:all .15s;user-select:none}
+.rb:hover{border-color:#bbb;background:var(--bg2)}
+.rb.sel{background:var(--ep);color:#fff;border-color:var(--ep)}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.scard{border:1px solid var(--border);border-radius:var(--rad);padding:12px 14px;cursor:pointer;transition:all .18s;background:#fff;user-select:none}
+.scard:hover{border-color:#bbb;background:var(--bg2)}
+.scard.chk{border-color:var(--gold);background:var(--golda)}
+.sh{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.sic{width:30px;height:30px;border-radius:7px;background:var(--bg2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;transition:all .18s}
+.scard.chk .sic{background:var(--gold)}
+.sn{font-size:13px;font-weight:600;color:var(--txt)}
+.sck{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;margin-left:auto;flex-shrink:0;font-size:10px;transition:all .18s}
+.scard.chk .sck{background:var(--gold);border-color:var(--gold);color:#fff}
+.sit{font-size:11px;color:var(--txt2);line-height:1.6}
+.ftr{background:var(--bg2);border-top:1px solid var(--border);padding:14px 28px;display:flex;justify-content:space-between;align-items:center}
+.bb{padding:8px 18px;font-size:13px;border:1px solid var(--border);border-radius:8px;background:#fff;cursor:pointer;color:var(--txt2)}
+.bb:hover{background:var(--bg2)}
+.bn{padding:8px 22px;font-size:13px;font-weight:600;border:none;border-radius:8px;background:var(--ep);color:#fff;cursor:pointer;transition:opacity .15s}
+.bn:hover{opacity:.85}
+.bn.g{background:var(--gold)}
+.bn:disabled{opacity:.5;cursor:not-allowed}
+.cnt{font-size:12px;color:var(--txt3)}
+.sw{text-align:center;padding:16px 0}
+.sico{width:58px;height:58px;border-radius:50%;background:var(--golda);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;border:1.5px solid var(--gold);font-size:28px}
+.sw h2{font-size:20px;font-weight:600;margin-bottom:8px}
+.sw>p{font-size:13px;color:var(--txt2);max-width:380px;margin:0 auto 18px;line-height:1.7}
+.smb{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rad);padding:14px 18px;text-align:left;margin:0 auto;max-width:420px}
+.sr2{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;gap:12px}
+.sr2:last-child{border-bottom:none}
+.sr2 span:first-child{color:var(--txt2);white-space:nowrap}
+.sr2 span:last-child{font-weight:600;color:var(--txt);text-align:right}
+.tg{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;background:var(--golda);border:1px solid var(--gold);color:#8a6830;margin:1px}
+@media(max-width:520px){.g2{grid-template-columns:1fr}.sg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="card">
+<div class="hdr">
+  <div class="brand">
+    <img src="data:image/png;base64,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" alt="EP">
+    <div><h1>ESTUDIO PAZ &amp; ASOC.</h1><p>Estudio Jurídico Contable</p></div>
+  </div>
+  <div class="hdr-r"><p>Propuesta de servicios</p><p>estudiopaz.com.ar</p></div>
+</div>
+<div class="goldbar"></div>
+<div class="prog">
+  <div class="steps">
+    <div class="si"><div class="sc act" id="sc0">1</div><div class="sl act" id="sl0">Datos</div></div>
+    <div class="cw" id="co0"><div class="cl"></div></div>
+    <div class="si"><div class="sc" id="sc1">2</div><div class="sl" id="sl1">Fiscal</div></div>
+    <div class="cw" id="co1"><div class="cl"></div></div>
+    <div class="si"><div class="sc" id="sc2">3</div><div class="sl" id="sl2">Negocio</div></div>
+    <div class="cw" id="co2"><div class="cl"></div></div>
+    <div class="si"><div class="sc" id="sc3">4</div><div class="sl" id="sl3">Servicios</div></div>
+    <div class="cw" id="co3"><div class="cl"></div></div>
+    <div class="si"><div class="sc" id="sc4">5</div><div class="sl" id="sl4">Volumen</div></div>
+    <div class="cw" id="co4"><div class="cl"></div></div>
+    <div class="si"><div class="sc" id="sc5">6</div><div class="sl" id="sl5">Listo</div></div>
+  </div>
+</div>
+<div class="body">
+<div class="stp vis" id="step0">
+  <div class="ttl">Datos de contacto</div>
+  <div class="sub">Completá tus datos básicos para personalizar la propuesta</div>
+  <div class="g2">
+    <div class="fr"><label>Nombre o razón social</label><input type="text" id="fn" placeholder="Ej: García Juan / García SRL"></div>
+    <div class="fr"><label>CUIT / CUIL</label><input type="text" id="fc" placeholder="20-00000000-0"></div>
+  </div>
+  <div class="g2">
+    <div class="fr"><label>Correo electrónico</label><input type="email" id="fe" placeholder="tu@email.com"></div>
+    <div class="fr"><label>Teléfono / WhatsApp</label><input type="text" id="ft" placeholder="+54 9 11 0000-0000"></div>
+  </div>
+  <div class="fr"><label>¿Cómo llegaste al estudio?</label>
+    <div class="rr" id="or"><div class="rb" onclick="sr('or',this)">Google</div><div class="rb" onclick="sr('or',this)">Recomendación</div><div class="rb" onclick="sr('or',this)">Redes sociales</div><div class="rb" onclick="sr('or',this)">Ya soy cliente</div><div class="rb" onclick="sr('or',this)">Otro</div></div>
+  </div>
+</div>
+<div class="stp" id="step1">
+  <div class="ttl">Situación fiscal</div>
+  <div class="sub">Indicanos tu condición actual ante AFIP e IIBB</div>
+  <div class="fr"><label>Condición ante AFIP</label>
+    <div class="rr" id="af"><div class="rb" onclick="sr('af',this)">Monotributista</div><div class="rb" onclick="sr('af',this)">Resp. Inscripto (IVA)</div><div class="rb" onclick="sr('af',this)">Exento</div><div class="rb" onclick="sr('af',this)">No sé / A determinar</div></div>
+  </div>
+  <div class="fr" style="margin-top:10px"><label>Ingresos Brutos (IIBB)</label>
+    <div class="rr" id="ib"><div class="rb" onclick="sr('ib',this)">Contribuyente local</div><div class="rb" onclick="sr('ib',this)">Convenio Multilateral</div><div class="rb" onclick="sr('ib',this)">Exento / No inscripto</div><div class="rb" onclick="sr('ib',this)">No sé</div></div>
+  </div>
+  <div class="fr" style="margin-top:10px"><label>¿Tiene deudas, planes de pago o moratorias?</label>
+    <div class="rr" id="de"><div class="rb" onclick="sr('de',this)">Sí</div><div class="rb" onclick="sr('de',this)">No</div><div class="rb" onclick="sr('de',this)">No sé</div></div>
+  </div>
+  <div class="fr" style="margin-top:10px"><label>¿Tiene contador actualmente?</label>
+    <div class="rr" id="co"><div class="rb" onclick="sr('co',this)">Sí, deseo cambiar</div><div class="rb" onclick="sr('co',this)">No, es primera vez</div></div>
+  </div>
+</div>
+<div class="stp" id="step2">
+  <div class="ttl">Tu negocio</div>
+  <div class="sub">Contanos sobre la estructura y actividad de tu empresa</div>
+  <div class="fr"><label>Tipo de organización</label>
+    <div class="rr" id="tp"><div class="rb" onclick="sr('tp',this)">Persona humana</div><div class="rb" onclick="sr('tp',this)">Soc. de Hecho</div><div class="rb" onclick="sr('tp',this)">SRL</div><div class="rb" onclick="sr('tp',this)">SA</div><div class="rb" onclick="sr('tp',this)">SAS</div><div class="rb" onclick="sr('tp',this)">Otro</div></div>
+  </div>
+  <div class="g2" style="margin-top:10px">
+    <div class="fr"><label>Actividad principal</label><input type="text" id="fac" placeholder="Ej: Comercio minorista, IT..."></div>
+    <div class="fr"><label>Antigüedad del negocio</label>
+      <select id="fan"><option value="">Seleccioná...</option><option>Inicio de actividades (nuevo)</option><option>Menos de 1 año</option><option>1 a 3 años</option><option>3 a 5 años</option><option>Más de 5 años</option></select>
+    </div>
+  </div>
+  <div class="g2">
+    <div class="fr"><label>Cantidad de empleados</label>
+      <div class="rr" id="em"><div class="rb" onclick="sr('em',this)">Sin empleados</div><div class="rb" onclick="sr('em',this)">1–3</div><div class="rb" onclick="sr('em',this)">4–10</div><div class="rb" onclick="sr('em',this)">+10</div></div>
+    </div>
+    <div class="fr"><label>¿Opera en más de una provincia?</label>
+      <div class="rr" id="pr"><div class="rb" onclick="sr('pr',this)">Sí</div><div class="rb" onclick="sr('pr',this)">No, solo CABA/PBA</div></div>
+    </div>
+  </div>
+</div>
+<div class="stp" id="step3">
+  <div class="ttl">Servicios que necesitás</div>
+  <div class="sub">Seleccioná las áreas en las que buscás asesoramiento — podés elegir varias</div>
+  <div class="sg">
+    <div class="scard" onclick="ts(this)" data-s="Auditoría &amp; Contabilidad"><div class="sh"><div class="sic">📒</div><span class="sn">Auditoría &amp; Contabilidad</span><div class="sck">✓</div></div><div class="sit">Estados contables · Auditoría · Certificaciones · Sistemas de gestión</div></div>
+    <div class="scard" onclick="ts(this)" data-s="Impuestos"><div class="sh"><div class="sic">🧾</div><span class="sn">Impuestos</span><div class="sck">✓</div></div><div class="sit">Nacionales, provinciales y municipales · Planificación fiscal · Moratorias</div></div>
+    <div class="scard" onclick="ts(this)" data-s="Societarios"><div class="sh"><div class="sic">🏛</div><span class="sn">Societarios</span><div class="sck">✓</div></div><div class="sit">Constitución · IGJ · Reorganizaciones · Fusiones · Disolución</div></div>
+    <div class="scard" onclick="ts(this)" data-s="Administrativos"><div class="sh"><div class="sic">⚙️</div><span class="sn">Administrativos</span><div class="sck">✓</div></div><div class="sit">Facturación · Pagos y cobranzas · Conciliaciones bancarias · Rúbrica</div></div>
+    <div class="scard" onclick="ts(this)" data-s="Recursos Humanos"><div class="sh"><div class="sic">👥</div><span class="sn">Recursos Humanos</span><div class="sck">✓</div></div><div class="sit">Liquidación de haberes · Contratos laborales · Libro sueldos · DDJJ</div></div>
+    <div class="scard" onclick="ts(this)" data-s="Legales"><div class="sh"><div class="sic">⚖️</div><span class="sn">Legales</span><div class="sck">✓</div></div><div class="sit">Civil · Laboral · Familia · Propiedad horizontal · Sucesiones</div></div>
+    <div class="scard" onclick="ts(this)" data-s="Finanzas"><div class="sh"><div class="sic">📈</div><span class="sn">Finanzas</span><div class="sck">✓</div></div><div class="sit">Inversiones · Modelado financiero · Valoración de empresas · Riesgos</div></div>
+    <div class="scard" onclick="ts(this)" data-s="Necesito orientación"><div class="sh"><div class="sic">💡</div><span class="sn">No sé aún</span><div class="sck">✓</div></div><div class="sit">Necesito orientación para identificar qué servicios se adaptan a mi situación</div></div>
+  </div>
+</div>
+<div class="stp" id="step4">
+  <div class="ttl">Volumen operativo</div>
+  <div class="sub">Esto nos ayuda a dimensionar el trabajo y preparar la propuesta</div>
+  <div class="fr"><label>Facturación mensual estimada</label>
+    <div class="rr" id="fac2"><div class="rb" onclick="sr('fac2',this)">Hasta $5M</div><div class="rb" onclick="sr('fac2',this)">$5M – $20M</div><div class="rb" onclick="sr('fac2',this)">$20M – $50M</div><div class="rb" onclick="sr('fac2',this)">Más de $50M</div></div>
+  </div>
+  <div class="g2" style="margin-top:10px">
+    <div class="fr"><label>Facturas emitidas por mes</label>
+      <div class="rr" id="fa2"><div class="rb" onclick="sr('fa2',this)">1–20</div><div class="rb" onclick="sr('fa2',this)">21–100</div><div class="rb" onclick="sr('fa2',this)">+100</div></div>
+    </div>
+    <div class="fr"><label>¿Urgencia por vencimientos próximos?</label>
+      <div class="rr" id="ur"><div class="rb" onclick="sr('ur',this)">Sí</div><div class="rb" onclick="sr('ur',this)">No</div></div>
+    </div>
+  </div>
+  <div class="fr" style="margin-top:6px"><label>Observaciones adicionales (opcional)</label><input type="text" id="fob" placeholder="Cualquier información relevante..."></div>
+</div>
+<div class="stp" id="step5">
+  <div class="sw">
+    <div class="sico">✅</div>
+    <h2>¡Recibimos tu solicitud!</h2>
+    <p>Revisaremos tus datos y te enviaremos una propuesta personalizada en las próximas <strong>24–48 horas hábiles</strong>.</p>
+    <div class="smb" id="smb"></div>
+    <p style="margin-top:14px;font-size:11px;color:#999">Consultas: <strong>info@estudiopaz.com.ar</strong> · <strong>(+54) 11 3848-7500</strong></p>
+  </div>
+</div>
+</div>
+<div class="ftr">
+  <button class="bb" id="btnB" onclick="goB()" style="visibility:hidden">← Anterior</button>
+  <span class="cnt" id="cnt">Paso 1 de 5</span>
+  <button class="bn" id="btnN" onclick="goN()">Siguiente →</button>
+</div>
+</div>
+<script>
+  emailjs.init('5tbhWeoGKufezyje2');
+  const SVC='service_womxnks',TPL='template_lq5wjbt';
+  let cur=0;const tot=5;
+  function sr(g,el){document.querySelectorAll('#'+g+' .rb').forEach(b=>b.classList.remove('sel'));el.classList.add('sel')}
+  function ts(el){el.classList.toggle('chk')}
+  function upd(){
+    document.querySelectorAll('.stp').forEach((s,i)=>s.classList.toggle('vis',i===cur));
+    for(let i=0;i<=5;i++){
+      const sc=document.getElementById('sc'+i),sl=document.getElementById('sl'+i),co=document.getElementById('co'+i);
+      if(!sc)continue;sc.className='sc';sl.className='sl';
+      if(i<cur){sc.classList.add('dn');sc.textContent='✓';}
+      else if(i===cur){sc.classList.add('act');sc.textContent=i+1;sl.classList.add('act');}
+      else sc.textContent=i+1;
+      if(co){const cl=co.querySelector('.cl');if(cl)cl.className='cl'+(i<cur?' dn':'');}
+    }
+    const b=document.getElementById('btnB'),n=document.getElementById('btnN'),c=document.getElementById('cnt');
+    b.style.visibility=cur===0?'hidden':'visible';
+    if(cur>=tot){n.style.display='none';b.style.display='none';c.textContent='¡Completado!';}
+    else{n.style.display='inline-block';c.textContent='Paso '+(cur+1)+' de '+tot;
+      n.textContent=cur===tot-1?'Enviar solicitud ✉':'Siguiente →';
+      n.className=cur===tot-1?'bn g':'bn';}
+  }
+  function goB(){if(cur>0){cur--;upd();}}
+  function goN(){if(cur===tot-1){enviar();return;}if(cur<tot){cur++;upd();}}
+  function enviar(){
+    const btn=document.getElementById('btnN');
+    btn.disabled=true;btn.textContent='Enviando...';
+    const sv=[...document.querySelectorAll('.scard.chk')].map(e=>e.dataset.s).join(', ')||'—';
+    const params={
+      nombre:document.getElementById('fn').value||'—',
+      email:document.getElementById('fe').value||'—',
+      telefono:document.getElementById('ft').value||'—',
+      cuit:document.getElementById('fc').value||'—',
+      afip:(document.querySelector('#af .rb.sel')||{textContent:'—'}).textContent,
+      iibb:(document.querySelector('#ib .rb.sel')||{textContent:'—'}).textContent,
+      deudas:(document.querySelector('#de .rb.sel')||{textContent:'—'}).textContent,
+      contador:(document.querySelector('#co .rb.sel')||{textContent:'—'}).textContent,
+      tipo:(document.querySelector('#tp .rb.sel')||{textContent:'—'}).textContent,
+      actividad:document.getElementById('fac').value||'—',
+      antiguedad:document.getElementById('fan').value||'—',
+      empleados:(document.querySelector('#em .rb.sel')||{textContent:'—'}).textContent,
+      provincias:(document.querySelector('#pr .rb.sel')||{textContent:'—'}).textContent,
+      servicios:sv,
+      facturacion:(document.querySelector('#fac2 .rb.sel')||{textContent:'—'}).textContent,
+      facturas:(document.querySelector('#fa2 .rb.sel')||{textContent:'—'}).textContent,
+      urgencia:(document.querySelector('#ur .rb.sel')||{textContent:'—'}).textContent,
+      observaciones:document.getElementById('fob').value||'—'
+    };
+    emailjs.send(SVC,TPL,params).then(()=>{
+      cur++;upd();
+      document.getElementById('smb').innerHTML='<div class="sr2"><span>Nombre</span><span>'+params.nombre+'</span></div><div class="sr2"><span>Email</span><span>'+params.email+'</span></div><div class="sr2"><span>Cond. AFIP</span><span>'+params.afip+'</span></div><div class="sr2"><span>Tipo empresa</span><span>'+params.tipo+'</span></div><div class="sr2"><span>Facturación</span><span>'+params.facturacion+'</span></div><div class="sr2"><span>Servicios</span><span>'+sv.split(', ').map(s=>'<span class="tg">'+s+'</span>').join('')+'</span></div>';
+    }).catch(err=>{
+      console.error(err);
+      btn.disabled=false;btn.textContent='Enviar solicitud ✉';
+      alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+    });
+  }
+  upd();
+</script>
+</body>
+</html>
